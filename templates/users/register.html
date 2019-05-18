@@ -1,0 +1,79 @@
+{% extends "base/l_r_base.html" %}
+{% load staticfiles %}
+	{% block title %}
+		注册
+	{% endblock title %}
+	{% block js %}
+		<script type="text/javascript" src="{% static 'js/users/register.js' %}"></script>
+
+
+	{% endblock js%}
+
+	{% block body %}
+
+		<div class="register_con">
+			<div class="l_con fl">
+				<a class="reg_logo" href="{% url 'goods:index' %}"><img src="/static/images/logo02.png"></a>
+				<div class="reg_slogan">你所需的  ·  应有尽有</div>
+				<div class="reg_banner">
+
+
+				</div>
+
+
+			</div>
+
+			<div class="r_con fr">
+				<div class="reg_title clearfix">
+					<h1>用户注册</h1>
+					<a href="{% url 'users:login' %}">登录</a>
+				</div>
+				<div class="reg_form clearfix">
+					<form method="post" action="{% url 'users:register'%}" id="form1">
+						{% csrf_token %}
+						{{msg}}
+					<ul>
+
+						<li>
+							<label>邮箱:</label>
+							<input type="text" name="email" id="email">
+							<span class="error_tip">提示信息</span>
+						</li>
+
+						<li>
+							<label>用户名:</label>
+							<input type="text" name="user_name" id="user_name">
+							<span class="error_tip">提示信息</span>
+						</li>
+
+						<li>
+							<label>密码:</label>
+							<input type="password" name="pwd" id="pwd">
+							<span class="error_tip">提示信息</span>
+						</li>
+
+						<li>
+							<label>验证码：</label>
+								<input type="button" id="gain_verify" value="获取验证码" style="width: 120px; height: 40px; float: right; background-color: #47aa34; color: white">
+								<input type="text" id="verify"  name="verify" style="width: 120px; height:38px;border:1px solid #e0e0e0;float:left;outline:none;text-indent:10px;background-color:#f8f8f8">
+								<span class="error_tip1" >提示信息</span>
+						</li>
+
+
+						<li class="agreement">
+							<input type="checkbox" name="allow" id="allow" checked="checked">
+							<label>同意”生鲜超市用户使用协议“</label>
+							<span class="error_tip2">提示信息</span>
+						</li>
+						<li class="reg_sub">
+							<input type="submit" value="注 册" name="" id="submit" >
+						</li>
+					</ul>
+					</form>
+				</div>
+
+			</div>
+
+		</div>
+
+	{% endblock body%}

@@ -1,0 +1,63 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+ul{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+#tab{
+    width: 698px;
+    height:200px;
+    border: solid 1px gray;
+    margin: 50px 0 0 100px;
+    /*处理超出的内容*/
+    overflow: hidden;
+}
+/*选项卡的头部*/
+#tab-header{
+    background-color: #F7F7F7;
+    height: 33px;
+    text-align: center;
+    position: relative;
+}
+#tab-header ul{
+    width: 700px;
+    position: absolute;
+    left: -1px;
+}
+#tab-header ul li{
+    float: left;
+    /*background-color: red;*/
+    width: 138px;
+    height: 33px;
+    line-height:33px;
+    padding: 0 1px;
+    border-bottom: 1px solid #dddddd;
+}
+#tab-header ul li.select {
+    background-color: white;
+    border-bottom: 0px;
+    border-left: 1px solid #dddddd;
+    border-right: 1px solid #dddddd;
+    padding: 0;
+}
+#tab-header ul li:hover{
+    color: orange;
+}
+/*主要内容*/
+#tab-content .dom{
+    display: none;
+}
+#tab-content .dom ul li{
+    float: left;
+    /*background-color: red;*/
+    margin: 15px 10px;
+    width: 300px;
+}
+#tab-content .dom ul li a:hover{
+    color: orange;
+}

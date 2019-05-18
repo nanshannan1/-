@@ -1,0 +1,2 @@
+# 根据表中的字段建立索引
+{{ object.goods_name }}

@@ -1,0 +1,54 @@
+{% extends "base/base_user_center.html" %}
+{% load staticfiles %}
+{% block title%}
+{{ info }}
+{% endblock title%}
+{% block body %}
+
+	<div class="main_con clearfix">
+		<div class="left_menu_con clearfix">
+			<h3>用户中心</h3>
+			<ul>
+				<li><a href="{% url 'users:info' %}" class="active">· 个人信息</a></li>
+				<li><a href="{% url 'users:order' 1 %}">· 全部订单</a></li>
+				<li><a href="{% url 'users:site' %}">· 收货地址</a></li>
+			</ul>
+		</div>
+		<div class="right_content clearfix">
+			<div class="info_con clearfix">
+			<h3 class="common_title2">基本信息</h3>
+					<ul class="user_info_list">
+						<li><span>用户名：</span>{{ name }}</li>
+						<li><span>联系方式：</span>{% if address%}{{ address.addressee_contact }}{% else %}暂无{% endif%}</li>
+						<li><span>联系地址：</span>{% if address%}{{ address.direction }}{% else %}暂无{% endif%}</li>
+					</ul>
+			</div>
+
+			<h3 class="common_title2">最近浏览</h3>
+			<div class="has_view_list">
+				<ul class="goods_type_list clearfix">
+
+
+					{% for recently in goods_recently %}
+
+						<li>
+							<!--图片暂时不写-->
+							<a href="/goods/{{ recently.goods.id }}/"><img src="/static/images/{{ recently.goods.goods_img }}"></a>
+							<h4><a href="/goods/{{ recently.goods.id }}/">{{ recently.goods.goods_name}}</a></h4>
+							<div class="operate">
+								<span class="prize">￥{{ recently.goods.goods_price }}</span>
+								<span class="unit">{{ recently.goods.goods_price }}/{{ recently.goods.goods_unit }}</span>
+								<a href="/cart/add{{recently.goods.id}}_1/" class="add_goods" title="加入购物车"></a>
+							</div>
+						</li>
+					{% empty %}
+						<h3>快去首页看一下吧</h3>
+					{% endfor %}
+
+			</ul>
+		</div>
+		</div>
+	</div>
+
+{% endblock body %}
+

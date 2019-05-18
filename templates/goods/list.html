@@ -1,0 +1,103 @@
+{% extends "base/base_goods.html" %}
+{% load staticfiles %}
+{% block js%}
+
+{% endblock js%}
+{% block body%}
+
+	<div class="navbar_con">
+		<div class="navbar clearfix">
+			<div class="subnav_con fl">
+				<h1>全部商品分类</h1>	
+				<span></span>			
+				<ul class="subnav">
+					{% for cat in all_cat%}
+					<li><a href="/goods/goods_list/{{ cat.id}}/1/1/" class="egg">{{ cat.type_name }}</a></li>
+					{% empty %}
+					{% endfor %}
+
+				</ul>
+			</div>
+			<ul class="navlist fl">
+				<li><a href="{% url 'goods:index' %}">首页</a></li>
+				<li class="interval">|</li>
+				<li><a href="{% url 'goods:index' %}">手机生鲜</a></li>
+				<li class="interval">|</li>
+				<li><a href="{% url 'goods:c_j' %}">抽奖</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="breadcrumb">
+		<a href="#">全部分类</a>
+		<span>></span>
+		<a href="#">{{ c_name.type_name }}</a>
+	</div>
+
+	<div class="main_wrap clearfix">
+		<div class="l_wrap fl clearfix">
+			<div class="new_goods">
+				<h3>新品推荐</h3>
+				<ul>
+					{% for new in news %}
+					<li>
+						<a href="/goods/{{ new.id }}/"><img src="/static/images/{{ new.goods_img }}"></a>
+						<h4><a href="/goods/{{ new.id }}/">{{ new.goods_name }}</a></h4>
+						<div class="prize">￥{{ new.goods_price }}</div>
+					</li>
+					{% empty %}
+					{% endfor %}
+
+				</ul>
+			</div>
+		</div>
+
+		<div class="r_wrap fr clearfix">
+			<div class="sort_bar">
+				<a href="/goods/goods_list/{{ c_name.id }}/1/1/"
+				   {% if sort == '1' %}
+				   class="active"
+				   {% endif %} >默认</a>
+				<a href="/goods/goods_list/{{ c_name.id }}/1/2/"
+				   {% if sort == '2' %} class="active" {% endif %}>价格</a>
+				<a href="/goods/goods_list/{{ c_name.id }}/1/3/" {% if sort == '3' %} class="active" {% endif %}>人气</a>
+			</div>
+
+			<ul class="goods_type_list clearfix">
+
+				{% for good in page %}
+				<li>
+					<a href="/goods/{{ good.id }}/"><img src="/static/images/{{ good.goods_img }}"></a>
+					<h4><a href="/goods/{{ good.id }}/">{{ good.goods_name}}</a></h4>
+					<div class="operate">
+						<span class="prize">￥{{ good.goods_price }}</span>
+						<span class="unit">kg/元</span>
+						<a href="/cart/add{{ good.id }}_1/" class="add_goods" title="加入购物车"></a>
+					</div>
+				</li>
+				{% empty %}
+				{% endfor %}
+
+
+			</ul>
+
+			<div class="pagenation">
+				{% if page.has_previous %}
+					<a href="/goods/good_list/{{ c_name.id }}/{{page.previous_page_number}}/{{ sort }}/">&lt;上一页</a>
+				{% endif %}
+
+				{% for pindex in paginator.page_range %}
+				{% if pindex == page.number %}
+				<a href="/goods/good_list/{{ c_name.id }}/{{pindex}}/{{ sort }}/" class="active">{{pindex}}</a>
+				{% else %}
+				<a href="/goods/good_list/{{ c_name.id }}/{{pindex}}/{{ sort }}/">{{pindex}}</a>
+				{% endif %}
+				{% endfor %}
+				{% if page.has_next%}
+				<a href="/goods/good_list/{{ c_name.id }}/{{page.next_page_number}}/{{ sort }}/">下一页&gt;</a>
+				{%endif%}
+			</div>
+		</div>
+	</div>
+
+{% endblock body %}

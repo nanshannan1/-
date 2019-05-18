@@ -1,0 +1,80 @@
+{% extends "base/l_r_base.html" %}
+{% load staticfiles %}
+	{% block title %}
+		{{ msg }}
+	{% endblock title %}
+	{% block js %}
+		<script type="text/javascript" src="{% static 'js/users/login.js' %}"></script>
+	{% endblock js%}
+
+
+	{% block body %}
+		<div class="login_top clearfix">
+			<a href="index.html" class="login_logo"><img src="{% static 'images/logo02.png' %}"></a>
+		</div>
+
+		<div class="login_form_bg">
+			<div class="login_form_wrap clearfix">
+				<div class="login_banner fl"></div>
+				<div class="slogan fl">为你服务 · 不惧风雨</div>
+				<div class="login_form fr">
+					<div class="login_title clearfix">
+						<h1>用户登录</h1>
+						<a href="{% url 'users:register' %}">立即注册</a>
+					</div>
+					<div class="form_input">
+						<form method="post" action="{% url 'users:login' %}">
+							{% csrf_token %}
+							<input type="text" name="username" class="name_input" placeholder="用户名 / 邮箱" id="username" value="{{ user_value }}">
+							<!--<div class="user_error">输入错误</div>-->
+
+							<input type="password" name="pwd" class="pass_input" placeholder="请输入密码" id="pwd">
+							<!--<div class="pwd_error">输入错误</div>-->
+
+							<div class="more_input clearfix">
+								<input type="checkbox" name="remember" {{ checked }}>
+								<label>记住用户名</label>
+								<a href="{% url 'users:f_pwd' %}" id="f">忘记密码</a>
+							</div>
+							<input type="submit" name="" value="登录" class="input_submit">
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="popup_con" id="a">
+			<div class="popup">
+
+			</div>
+
+			<div class="mask"></div>
+	    </div>
+
+
+
+	<script type="text/javascript" src="/static/js/lib/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript">
+		// $(".input_submit").click(function () {
+		// 	var name = $("#username").val();
+		// 	var pwd = $("#pwd").val();
+		// 	if (name.length == 0 || pwd.length == 0){
+		// 		$(".input_submit").attr("disabled",true);
+		// 		if (name.length==0){
+		// 			alert("用户名为空")
+		// 		} else {
+		// 			 $("#username").next().hide()
+		// 		}
+		// 	} else {
+		// 		$(".input_submit").attr("disabled",false)
+		// 	}
+		// });
+
+
+
+	</script>
+
+	{% endblock body%}
+
+

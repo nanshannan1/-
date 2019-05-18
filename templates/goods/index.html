@@ -1,0 +1,87 @@
+{% extends "base/base_goods.html" %}
+{% load staticfiles %}
+{% block js%}
+	<script type="text/javascript" src="{% static 'js/goods/slide.js' %}"></script>
+{% endblock js%}
+{% block body%}
+
+	<div class="navbar_con">
+		<div class="navbar">
+			<h1 class="fl">全部商品分类</h1>
+			<ul class="navlist fl">
+				<li><a href="{% url 'goods:index' %}">首页</a></li>
+				<li class="interval">|</li>
+				<li><a href="{% url 'goods:index' %}">手机生鲜</a></li>
+				<li class="interval">|</li>
+				<li><a href="{% url 'goods:c_j' %}">抽奖</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="center_con clearfix">
+		<ul class="subnav fl">
+
+			{% for cat in all_cat %}
+			<li><a href="#model{{ cat.mid }}" class="egg">{{ cat.type_name }}</a></li>
+			{% empty %}
+
+			{% endfor %}
+		</ul>
+		<div class="slide fl">
+			<ul class="slide_pics">
+				{% for r_c in r_c_imgs %}
+				<li><img src="/static/images/{{ r_c.r_c_img }}" alt="幻灯片"></li>
+				{% empty %}
+				{% endfor %}
+
+			</ul>
+			<div class="prev"></div>
+			<div class="next"></div>
+			<ul class="points"></ul>
+		</div>
+		<div class="adv fl">
+			{% for s_i in s_imgs%}
+			<a href="#"><img src="/static/images/{{ s_i.s_img }}"></a>
+			{% empty %}
+			{% endfor %}
+		</div>
+	</div>
+
+
+	{% for cat in all_cat %}
+
+	<div class="list_model">
+		<div class="list_title clearfix">
+			<h3 class="fl" id="model{{ cat.mid }}">{{ cat.type_name }}</h3>
+			<div class="subtitle fl">
+				<span>|</span>
+				{% for hot in cat.hot_goods %}
+					<a href="/goods/{{ hot.id }}/">{{ hot.goods_name }}</a>
+				{% empty %}
+				{% endfor %}
+
+			</div>
+			<a href="/goods/goods_list/{{ cat.id }}/1/1/" class="goods_more fr" id="fruit_more">查看更多 ></a>
+		</div>
+
+		<div class="goods_con clearfix">
+			<div class="goods_banner fl"><img src="/static/images/{{ cat.type_image }}"></div>
+			<ul class="goods_list fl">
+				{% for new in cat.new_goods %}
+				<li>
+					<h4><a href="/goods/{{ new.id }}/">{{ new.goods_name }}</a></h4>
+					<a href="/goods/{{ new.id }}/"><img src="/static/images/{{ new.goods_img }}"></a>
+					<div class="prize">¥ {{ new.goods_price }}</div>
+				</li>
+				{% empty %}
+				{% endfor %}
+
+			</ul>
+		</div>
+	</div>
+	{% empty %}
+	{% endfor %}
+
+
+
+{% endblock body %}

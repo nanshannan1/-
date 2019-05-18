@@ -1,0 +1,190 @@
+
+html,body{
+	min-width: 1200px;
+	font-weight: 100;
+	color: #333;
+}
+
+/*banner轮播*/
+.indexbanner{
+	width: 100%;
+	min-width: 1200px;
+    position: relative;
+    overflow: hidden;
+    
+}
+
+/*主要导航*/
+.indexcontent{
+	width: 100%;
+	overflow: hidden;
+	margin-top: 2px;
+}
+.indexcontent ul{
+	width: 100%;
+	overflow: hidden;
+}
+
+.indexcontent ul li{
+	width: 24.4%;
+	margin:5px 0.3%;
+	float: left;
+	padding-bottom: 40px;
+	background: #f2f2f2;
+	border-bottom: 1px solid #d4d4d4;
+	min-height: 350px;
+	box-shadow: 0 0 2px #d4d4d4;
+
+}
+.indexcontent ul li img{
+	width: 100%;
+	min-height:140px;
+	
+}
+.indexcontent ul li img:hover{
+	opacity: 0.9;
+	filter: alpha(opacity=90);
+}
+.indexcontent ul li .title{
+	margin-top: 10px;
+	line-height: 50px;
+	height: 50px;
+	text-align: center;
+	font-size:30px;
+	color: #6e6e6e;
+}
+.indexcontent ul li .title:hover{
+	text-decoration: none;
+	color: #450085;
+}
+.indexcontent ul li p{
+	display: block;
+	color: #6e6e6e;
+	font-size: 16px;
+	text-align: center;
+	line-height:30px;
+	height: 30px;
+}
+
+/*登录部分*/
+.indexlogin{
+	width: 100%;
+}
+.logininner{
+	margin:90px auto 110px auto;
+	width:36%;
+}
+.logininner p{
+	color: #6e6e6e;
+	margin-bottom: 10px;
+	padding-left:15px;
+	font-size: 16px;
+}
+.logininfo{
+	width: 100%;
+	overflow: hidden;
+	min-width: 530px;
+}
+.logininput{
+	width: 70%;
+	float: left;
+}
+.logininput input{
+	width: 100%;
+	min-width: 360px;
+	padding:0 10px;
+	box-sizing: border-box;
+	height: 40px;
+	margin-bottom: 8px;
+	border:1px solid #a7a7a7;
+	background: #f2f2f2;
+	font-size:18px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-ms-border-radius: 5px;
+	-o-border-radius: 5px;
+	border-radius: 5px;
+	color: #6e6e6e;
+	-webkit-transition:1s;
+	-moz-transition:1s;
+	-ms-transition:1s;
+	-o-transition:1s;
+	transition:1s;
+}
+.logininput input:hover{
+	box-shadow: 0 0 8px #a7a7a7;
+}
+.loginbtn{
+	border:none;
+	outline: none;
+	min-width:80px ;
+	min-height: 88px;
+	margin-left: 15px;
+	line-height: 88px;
+	float: left;
+	background: #450085;
+	text-align: center;
+	color: #fff;
+	-moz-border-radius: 5px;
+	-ms-border-radius: 5px;
+	-o-border-radius: 5px;
+	border-radius: 5px;
+	font-size: 16px;
+	cursor: pointer;
+	-webkit-transition:1s;
+	-moz-transition:1s;
+	-ms-transition:1s;
+	-o-transition:1s;
+	transition:1s;
+}
+.loginbtn:hover{
+	box-shadow: 0 0 8px #450085;
+}
+.logininner a{
+	display: inline-block;
+	width:170px ;
+	height: 30px;
+	line-height: 28px;
+	font-size: 16px;
+	background: #6a6a6a;
+	text-align: center;
+	color:#fff ;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-ms-border-radius: 5px;
+	-o-border-radius: 4px;
+	border-radius: 4px;
+	
+}
+.logininner a:hover{
+	background: #450085;
+}
+
+/*新人红包*/
+.index_hongbao{
+	width: 100%;
+	height: 70px;
+	margin:5px 0;
+	background: #450085;
+}
+.hongbao_inner{
+	width: 900px;
+	height:70px;
+	background: url(../img/hongbao.png) no-repeat;
+	background-size: 100% 100%;
+	margin:0 auto;
+	position: relative;
+}
+.hongbao_inner a{
+	position: absolute;
+	right: 0;
+	top:18px;
+	width: 207px;
+	height: 36px;
+	border-radius: 25px;
+	z-index: 100;
+}
+.hongbao_inner a:hover{
+	box-shadow: 0 0 8px #ffe725;
+}
+

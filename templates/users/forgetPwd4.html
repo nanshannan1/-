@@ -1,0 +1,24 @@
+{% extends "base/base_forget.html" %}
+{% block body%}
+
+<div class="content">
+     <div class="for-liucheng">
+      <div class="liulist for-cur"></div>
+      <div class="liulist for-cur"></div>
+      <div class="liulist for-cur"></div>
+      <div class="liulist for-cur"></div>
+      <div class="liutextbox">
+       <div class="liutext for-cur"><em>1</em><br /><strong>填写账户名</strong></div>
+       <div class="liutext for-cur"><em>2</em><br /><strong>验证身份</strong></div>
+       <div class="liutext for-cur"><em>3</em><br /><strong>设置新密码</strong></div>
+       <div class="liutext for-cur"><em>4</em><br /><strong>完成</strong></div>
+      </div>
+     </div><!--for-liucheng/-->
+      <div class="successs">
+       <h3>恭喜您，修改成功！</h3>
+       <h1 style="color: #39a93e"><a href="{% url 'users:login' %}">点击登陆!</a></h1>
+      </div>
+</div><!--web-width/-->
+
+ 
+{% endblock body%}

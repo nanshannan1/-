@@ -1,0 +1,85 @@
+{% extends "base/base_forget.html" %}
+{% load staticfiles %}
+{% block js %}
+    <script type="text/javascript" src="{% static '/js/users/forget.js' %}"></script>
+{% endblock js%}
+{% block body%}
+  <div class="content">
+   <div class="web-width">
+     <div class="for-liucheng">
+      <div class="liulist for-cur"></div>
+      <div class="liulist for-cur"></div>
+      <div class="liulist"></div>
+      <div class="liulist"></div>
+      <div class="liutextbox">
+       <div class="liutext for-cur"><em>1</em><br /><strong>填写账户名</strong></div>
+       <div class="liutext for-cur"><em>2</em><br /><strong>验证身份</strong></div>
+       <div class="liutext"><em>3</em><br /><strong>设置新密码</strong></div>
+       <div class="liutext"><em>4</em><br /><strong>完成</strong></div>
+      </div>
+     </div><!--for-liucheng/-->
+     <div class="forget-pwd">
+
+       <dl class="sel-yzsj">
+        <dt>邮箱：</dt>
+        <dd><input type="text"  id="email" name="email"/></dd>
+
+        <div class="clears"></div>
+       </dl>
+
+       <dl>
+        <dt>邮箱验码：</dt>
+        <dd><input type="text" id="code" name="code"/> <button id="cc">获取邮箱验证码</button></dd>
+        <div class="clears"></div>
+       </dl>
+       <div class="subtijiao"><input type="submit" value="提交" id="tj"/></div>
+      </div><!--forget-pwd/-->
+   </div><!--web-width/-->
+  </div><!--content/-->
+
+
+    <div class="popup_con" id="b">
+		<div class="popup">
+			<p>请输入正确格式的邮箱！</p>
+		</div>
+
+		<div class="mask"></div>
+	</div>
+
+    <div class="popup_con" id="c1">
+		<div class="popup">
+			<p>验证码发送成功！</p>
+		</div>
+
+		<div class="mask"></div>
+	</div>
+
+    <div class="popup_con" id="c2">
+            <div class="popup">
+			<p>验证码发送失败！</p>
+		</div>
+
+		<div class="mask"></div>
+	</div>
+
+
+
+    <div class="popup_con" id="c3">
+		<div class="popup">
+			<p>验证码错误！</p>
+		</div>
+
+		<div class="mask"></div>
+	</div>
+
+    <div class="popup_con" id="d">
+		<div class="popup">
+			<p>未知的错误！</p>
+		</div>
+
+		<div class="mask"></div>
+	</div>
+
+  
+{% endblock body %}
+

@@ -1,0 +1,28 @@
+{% extends "base/base_user_center.html" %}
+{% load staticfiles %}
+
+{% block title%}
+
+{% endblock title%}
+{% block body %}
+
+	<div class="main_con clearfix">
+
+		<div class="right_content clearfix">
+				<h3 class="common_title2">评价商品</h3>
+				<div class="site_con">
+					<form method="post" action="/order/comment/{{ order.id }}">
+						{% csrf_token %}
+
+						<div class="form_group form_group2">
+							<label>写评价：</label>
+							<textarea class="site_area" name="comment"></textarea>
+						</div>
+
+						<input type="submit" name="" value="提交" class="info_submit">
+					</form>
+				</div>
+		</div>
+	</div>
+
+{% endblock body %}

@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>忘记密码</title>
+    <link rel="shortcut icon" href="images/favicon.ico" />
+    <script type="text/javascript" src="/static/js/lib/jquery-3.3.1.min.js"></script>
+    <link type="text/css" href="/static/css/css.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/static/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/main.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/commonstyle.css">
+	{% block js %}
+	{% endblock js%}
+</head>
+{% load staticfiles %}
+<body>
+    <div class="login_top clearfix">
+        <a href="index.html" class="login_logo"><img src="{% static 'images/logo02.png' %}"></a>
+    </div>
+{% block body %}
+
+{% endblock body %}
+    <div class="footer no-mp">
+		<div class="footerinner">
+			<ul class="share">
+				<li>
+					<img class="weibo_icon" src="/static/images/share1.png" alt="">
+				</li>
+				<li>
+					<img class="qq_icon" src="/static/images/share2.png" alt="">
+				</li>
+				<li>
+					<img class="twitter_icon" src="/static/images/share3.png" alt="">
+				</li>
+				<li>
+					<img class="wechat_icon" src="/static/images/share4.png" alt="">
+				</li>
+			</ul>
+			<div class="code_wrap">
+				<ul class="code">
+					<!--<li><img class="weibo" src="/static/images/weibo1.png" alt=""></li>-->
+					<!--<li><img class="qq" src="/static/images/qq1.png" alt=""></li>-->
+					<!--<li><img class="twitter" src="/static/images/twitter1.png" alt=""></li>-->
+					<!--<li><img class="wechat" src="/static/images/wechat1.png" alt=""></li>-->
+				</ul>
+			</div>
+			<div class="footerinfo">
+				<div class="footerinfoTop">
+					<p>Telephone&Fax:&nbsp;+86(10)&nbsp;24336821&nbsp;;&nbsp;+86(22)&nbsp;24336822  </p>
+					<p>Email：&nbsp;miludebeike@163.com</p>
+					<p>河南省南阳市永发集团有限公司</p>
+					<p>天津市南开区红旗南路科技大厦四层</p>
+				</div>
+				<div class="footerinfoBottom">
+					<p>生鲜超市有限责任公司</p>
+					<p class="min">YBDTZ&nbsp;Invuuuyytmentt&nbsp;Company&nbsp;Limited</p>
+					<p>皖通有限公司</p>
+					<p class="min">WiToDa&nbsp;Enterprise&nbsp;Management&nbsp;Consulting&nbsp;Co.,&nbsp;Ltd.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

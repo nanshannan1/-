@@ -1,0 +1,152 @@
+{% extends "base/base_user_center.html" %}
+{% load staticfiles %}
+{% block title%}
+
+{% endblock title%}
+{% block body %}
+{% csrf_token %}
+
+	<div class="main_con clearfix">
+		<div class="left_menu_con clearfix">
+			<h3>用户中心</h3>
+			<ul>
+				<li><a href="{% url 'users:info' %}">· 个人信息</a></li>
+				<li><a href="{% url 'users:order' 1 %}" class="active">· 全部订单</a></li>
+				<li><a href="{% url 'users:site' %}">· 收货地址</a></li>
+			</ul>
+		</div>
+		<div class="right_content clearfix">
+				<h3 class="common_title2">全部订单</h3>
+				{% for order in page %}
+				<ul class="order_list_th w978 clearfix">
+					<li class="col01">{{ order.order_date }}</li>
+					<li class="col02">订单号：{{ order.id }}</li>
+					{% if order.order_status == 1 %}
+					<li class="col02 stress">未支付</li>
+					{% elif order.order_status == 4 %}
+
+					<li class="col03">支付编号:&nbsp;&nbsp;&nbsp;&nbsp;{{ order.trade_no }}</li>
+					{% endif %}
+				</ul>
+
+				<table class="order_list_table w980">
+					<tbody>
+						<tr>
+							<td width="55%">
+								{% for o_detail in order.order_detail %}
+								<ul class="order_goods_list clearfix">					
+									<li class="col01"><img src="/static/images/{{ o_detail.goods.goods_img }}"></li>
+									<li class="col02">{{ o_detail.goods.goods_name }}<em>{{  o_detail.goods.goods_price}}元/500g</em></li>
+									<li class="col03">{{ o_detail.goods.count }}</li>
+									<li class="col04">{{ o_detail.goods.price }}</li>
+								</ul>
+								{% empty %}
+								{% endfor %}
+
+							</td>
+							<td width="15%">{{ order.total_price }}元</td>
+							{% if order.order_status == 1 %}
+							<td width="15%">待付款</td>
+							<td width="15%"><a href="javascript:;" class="oper_btn" id="oper_btn" order_id="{{order.id}}">去付款</a></td>
+							{% elif order.order_status == 4 %}
+							<td width="15%">已完成</td>
+							<td width="15%">
+
+								{% for o_detail in order.order_detail %}
+
+									{% if o_detail.comment_status == 0 %}
+										<ul>
+											<div class="pj" style="border-bottom: 1px solid #dddddd;">
+												<a href="/order/comment/{{ o_detail.id }}" class="oper_btn">去评价</a>
+										    </div>
+
+										</ul>
+
+									{% else %}
+										<a href="#" class="oper_btn">已完成</a>
+									{% endif %}
+								{% empty %}
+								{% endfor %}
+
+							</td>
+							{% endif %}
+						</tr>
+					</tbody>
+				</table>
+				{% empty %}
+				<h2>暂无订单，快去下单吧</h2>
+				{% endfor %}
+
+				<div class="pagenation">
+					{% if page.has_previous %}
+					<a href="/users/order/{{page.previous_page_number}}/">&lt;上一页</a>
+					{% endif %}
+
+					{% for pindex in paginator.page_range %}
+						{% if pindex == page.number %}
+							<a href="#" class="active">{{pindex}}</a>
+						{% else %}
+							<a href="/users/order/{{pindex}}/">{{pindex}}</a>
+						{% endif %}
+					{% endfor %}
+
+					{% if page.has_next %}
+						<a href="/users/order/{{page.next_page_number}}/">下一页&gt;</a>
+					{%endif%}
+				</div>
+		</div>
+	</div>
+
+
+<div class="popup_con" id="e">
+	<div class="popup">
+		<p>支付成功！</p>
+	</div>
+
+	<div class="mask"></div>
+</div>
+
+<script type="text/javascript" src="/static/js/lib/jquery-1.12.4.min.js"></script>
+<script>
+	$("#oper_btn").click(function () {
+		var order_id = $(this).attr("order_id");
+		console.log("qqqqqqqqqqqqqqqqqqq");
+		console.log(order_id);
+		var data = {
+			order_id: order_id,
+			csrfmiddlewaretoken: $("input[name='csrfmiddlewaretoken']").val()
+		};
+		$.post('/order/go_payment/', data, function (data) {
+			if(data.code==3){
+			    window.open(data.pay_url);
+				var params = {
+					order_id: order_id,
+					csrfmiddlewaretoken: $("input[name='csrfmiddlewaretoken']").val()
+				};
+				$.post('/order/pay_check/', params, function (data) {
+
+				    if (data.info == 3) {
+
+						$("#e").fadeIn("slow", function () {
+							$("#e").fadeOut(10000, function () {
+								window.location.href="/users/order/1/"
+							})
+						})
+
+
+					}
+
+
+
+                })
+
+			}
+        })
+
+
+    })
+
+</script>
+
+{% endblock body %}
+

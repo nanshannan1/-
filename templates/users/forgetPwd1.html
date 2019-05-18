@@ -1,0 +1,118 @@
+{% extends "base/base_forget.html" %}
+{% block body%}
+<body>
+ 
+  <div class="content">
+   <div class="web-width">
+     <div class="for-liucheng">
+      <div class="liulist for-cur"></div>
+      <div class="liulist"></div>
+      <div class="liulist"></div>
+      <div class="liulist"></div>
+      <div class="liutextbox">
+       <div class="liutext for-cur"><em>1</em><br /><strong>填写账户名</strong></div>
+       <div class="liutext"><em>2</em><br /><strong>验证身份</strong></div>
+       <div class="liutext"><em>3</em><br /><strong>设置新密码</strong></div>
+       <div class="liutext"><em>4</em><br /><strong>完成</strong></div>
+      </div>
+     </div><!--for-liucheng/-->
+     <div class="forget-pwd">
+       <dl>
+        <dt>账户名：</dt>
+        <dd><input type="text" id="username" name="username"/></dd>
+        <div class="clears"></div>
+       </dl> 
+       <dl>
+        <dt>验证码：</dt>
+        <dd>
+         <input type="text" id="w_code" name="w_code"/>
+         <div class="yanzma">
+          <img id="code" src="{% url 'users:code' %}" alt="验证码" title="点击刷新" style="width: 120px; height: 40px;"/> <a href="" onclick="changeCode()">换一换</a>
+         </div>
+        </dd>
+        <div class="clears"></div>
+       </dl>
+       <div class="subtijiao"><input type="submit" value="提交" id="tj"/></div>
+      </div><!--forget-pwd/-->
+   </div><!--web-width/-->
+  </div><!--content/-->
+
+    <div class="popup_con" id="a">
+		<div class="popup">
+			<p>请填写用户名与验证码！</p>
+		</div>
+
+		<div class="mask"></div>
+	</div>
+
+    <div class="popup_con" id="b">
+		<div class="popup">
+			<p>你还没有注册！</p>
+		</div>
+
+		<div class="mask"></div>
+	</div>
+
+    <div class="popup_con" id="c">
+		<div class="popup">
+			<p>验证码错误！</p>
+		</div>
+
+		<div class="mask"></div>
+	</div>
+
+    <div class="popup_con" id="d">
+		<div class="popup">
+			<p>未知的错误！</p>
+		</div>
+
+		<div class="mask"></div>
+	</div>
+
+<script>
+    function changeCode() {
+	   // document.getElementById("code").src = "/blog/code?id="+ new Date().getTime()
+		document.getElementById("code").src = "/users/code?id="+ Math.random()
+    }
+
+    $("#tj").click(function () {
+        var username = $("#username").val();
+        var code = $("#w_code").val();
+        if (username.length==0 || code.length==0){
+            $("#a").fadeIn("slow", function () {
+					$("#a").fadeOut(3000)
+            })
+
+        } else {
+            $.get('/users/user_exist/?username='+username, function (data) {
+                if (data.info==1) {
+                    $("#b").fadeIn("slow", function () {
+					    $("#b").fadeOut(3000)
+                    })
+                } else {
+
+                    $.get('/users/check_code/?code='+code, function (data) {
+                        if (data.info==1) {
+                            $("#c").fadeIn("slow", function () {
+                                $("#c").fadeOut(3000)
+                            })
+                        }else {
+                            window.location.href = "/users/check_id/"
+                        }
+                    })
+
+
+                }
+            });
+
+
+
+        }
+    })
+
+
+</script>
+  
+</body>
+{% endblock body %}
+
